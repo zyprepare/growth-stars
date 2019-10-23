@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title></title>
+  <style type="text/css">
+    body,
+    dl,
+    dd,
+    h1,
+    h2,
+    h3,
+    form,
+    p,
+    pre {
+      margin: 0;
+    }
+
+    button,
+    input,
+    menu,
+    select,
+    textarea,
+    ol,
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    i,
+    em {
+      font-style: normal;
+    }
+
+    article,
+    aside,
+    footer,
+    header,
+    main,
+    nav,
+    section,
+    summary {
+      display: block;
+    }
+
+    img {
+      border: 0;
+      vertical-align: top;
+    }
+
+    ol,
+    ul {
+      list-style: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font-family: inherit;
+      font-size: 100%;
+      border: none;
+    }
+
+    button:focus,
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+    }
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+
+    audio:not([controls]) {
+      display: none;
+      height: 0;
+    }
+
+    a {
+      background: transparent;
+      /*1*/
+      outline: 0;
+      /*2*/
+      text-decoration: none;
+      /*3*/
+    }
+
+    *,
+    *:before,
+    *:after {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-text-size-adjust: none;
+      -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    }
+
+    html,
+    body {
+      height: 100%;
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="m_common_header"></div>
+  <div id="app"></div>
+
+  <script>
+    (function () {
+      var ua = window.navigator.userAgent;
+      var docEl = document.documentElement;
+      var html = document.querySelector('html');
+      var isAndorid = /Android/i.test(ua);
+      var dpr = window.devicePixelRatio ? Math.floor(window.devicePixelRatio) : 1;
+      var rem = docEl.clientWidth / 10;
+      // console.log(dpr);
+      // 设置 rem 基准值
+      html.style.fontSize = rem + 'px';
+
+      // Nexus 5 上 rem 值不准，
+      // 如：设置100px，getComputedStyle 中的值却为 85px，导致页面错乱
+      // 这时需要检查设置的值和计算后的值是否一样，
+      // 不一样的话重新设置正确的值
+      var getCPTStyle = window.getComputedStyle;
+      var fontSize = parseFloat(html.style.fontSize, 10);
+      var computedFontSize = parseFloat(getCPTStyle(html)['font-size'], 10);
+      if (getCPTStyle && Math.abs(fontSize - computedFontSize) >= 1) {
+        html.style.fontSize = fontSize * (fontSize / computedFontSize) + 'px';
+      }
+
+      // 设置 data-dpr 属性，留作的 css hack 之用
+      html.setAttribute('data-dpr', dpr);
+
+      // 安卓平台额外加上标记类
+      if (isAndorid) {
+        html.setAttribute('data-platform', 'android');
+      }
+    })();
+  </script>
+
+</body>
+
+</html>

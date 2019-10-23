@@ -1,0 +1,18 @@
+// 设计稿是按照哪个手机宽度设计的
+$phoneW: 750;
+
+// 长度设置，如果设计稿的长度是100px，则样式写成 width: rem(100);
+@function rem($val) {
+  @return $val/$phoneW * 10rem;
+}
+
+// 字体大小设置，如果设计稿显示的时24px，则样式写成 @include fontSize(24);
+@mixin fontSize($px) {
+  font-size: round($px / 2) * 1px;
+}
+
+// 尺寸
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
