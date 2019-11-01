@@ -18,6 +18,10 @@ if (!fs.existsSync(starJsonFile)) {
 const starJson = require(starJsonFile);
 const star = starJson.star;
 const starConfig = require(`./stars/${star}/star.config`);
+// 打包的文件是否采用自定义插入
+const inject = (starConfig.page && starConfig.page.hasOwnProperty('inject')) ? starConfig.page.inject : true;
+// 模板中是否设置页面的viewport
+const viewport = (starConfig.page && starConfig.page.hasOwnProperty('viewport')) ? starConfig.page.viewport : true;
 // 静态资源版本号
 const version = starConfig.version;
 // 当前项目目录
@@ -53,7 +57,9 @@ module.exports = {
       template: `${starDir}/public/index.html`,
       // 在 dist/index.html 的输出
       filename: 'index.html',
-      minify: false
+      minify: false,
+      inject,
+      viewport
     }
   },
 
@@ -89,7 +95,6 @@ module.exports = {
   transpileDependencies: ['swiper', 'dom7', 'ssr-window', 'growth-jsonp'],
 
   devServer: {
-    contentBase: `${starDir}/public`,
     port: 8008,
     host: 'localhost',
     // 禁止host检查

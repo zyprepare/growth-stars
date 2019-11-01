@@ -1,0 +1,10 @@
+<% if (htmlWebpackPlugin.options.viewport) { %>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<% } %>
+<% for (var css in htmlWebpackPlugin.files.css) { %>
+<link href="<%=htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
+<% } %>
+<div id="app_block"></div>
+<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+<script type="text/javascript" src="<%=htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+<% } %>

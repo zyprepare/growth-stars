@@ -2,8 +2,13 @@ const fs = require('fs');
 const child_process = require('child_process');
 const args = process.argv.splice(2);
 const star = args[0];
-const baseDir = `./stars/base/`;
-const starDir = `./stars/${star}`;
+const isBlock = args[1] && args[1] === '--block';
+let baseDir = `./stars/base/`;
+let starDir = `./stars/${star}`;
+
+if (isBlock) {
+  baseDir = `./stars/block/`;
+}
 
 function copy(from, to) {
   if (!fs.existsSync(starDir)) {

@@ -41,6 +41,9 @@ npm install
 # create star
 node createStar.js 子项目名称
 
+# create code block
+node createStar.js 子项目名称 --block
+
 # dev
 npm start
 
