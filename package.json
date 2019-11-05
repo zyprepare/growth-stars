@@ -2,6 +2,7 @@
   "name": "growth_stars",
   "version": "0.0.1",
   "private": true,
+  "homepage": "https://zyprepare.github.io/growth-stars/",
   "scripts": {
     "start": "npm run serve & npm run format",
     "serve": "vue-cli-service serve",
@@ -9,7 +10,10 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "fix": "eslint --fix --ext .js --ext .vue stars/*/src/",
-    "format": "onchange 'stars/*/src/**/*.js' 'stars/*/src/**/*.vue' 'stars/*/src/**/*.scss' -- prettier --write {{changed}}"
+    "format": "onchange 'stars/*/src/**/*.js' 'stars/*/src/**/*.vue' 'stars/*/src/**/*.scss' -- prettier --write {{changed}}",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "deploy": "gh-pages -d docs/.vuepress/dist"
   },
   "husky": {
     "hooks": {
@@ -44,6 +48,7 @@
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-vue": "^5.0.0",
+    "gh-pages": "^2.1.1",
     "husky": "^3.0.5",
     "lint-staged": "^9.3.0",
     "node-sass": "^4.12.0",
