@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>VuePress</title>
+    <meta name="description" content="">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.5dab6f79.css" as="style"><link rel="preload" href="/assets/js/app.866bc7da.js" as="script"><link rel="preload" href="/assets/js/2.c8c446bb.js" as="script"><link rel="preload" href="/assets/js/5.187fd521.js" as="script"><link rel="prefetch" href="/assets/js/3.b031480c.js"><link rel="prefetch" href="/assets/js/4.98de6b1c.js"><link rel="prefetch" href="/assets/js/6.b71de841.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.5dab6f79.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-exact-active router-link-active"></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="繁星技术文档"><a href="#繁星技术文档" class="header-anchor">#</a> 繁星技术文档</h1> <p>繁星，集成前端开发、调试、打包于一体，各业务线基于此脚手架独立开发，集中维护。
+该项目对底层前端构建进行了统一处理，实现了项目结构自动生成，本地开发环境搭建、打包模块生成的一体化功能。该项目理论上可以放任何项目，但从适用的角度看，更适用于小型项目或单个的活动页面，繁星的特点是小而多，这也是项目命名为繁星的意义。</p> <h2 id="技术说明"><a href="#技术说明" class="header-anchor">#</a> 技术说明</h2> <ul><li>该项目是基于vue-cli3脚手架，对vue.config.js进行了扩展，详细可参见该文件配置；</li> <li>使用eslint对代码规范进行检测，使用prettier+onchange工具对代码风格进行统一约束，使用pre-commit在代码commit时对代码进行eslint和prettier检查；</li> <li>代码提交时遵循commitlint规范（参考./commitlint.config.js），例如： git commit -m &quot;docs: 更新readme&quot;</li> <li>创建新的项目使用命令：node createStar.js 子项目名称 执行完命令后会自动在stars目录下生成对应的子项目，同时会在项目根目录下生成一个star.json文件，该文件中的配置指定了当前要操作的子项目名，如果没有此文件，也可执行上面命令创建：node createStar.js 子项目名称，star.json配置如下：</li></ul> <div class="language-star.json extra-class"><pre class="language-text"><code>{&quot;star&quot;:&quot;子项目名&quot;}
+</code></pre></div><h2 id="目录说明"><a href="#目录说明" class="header-anchor">#</a> 目录说明</h2> <ul><li>stars 存放所有子项目
+<ul><li>base 基础子项目，所有子项目基于该项目生成</li> <li>common 用于存放公共模块，包含公共组件和公共js方法等等</li> <li>example 示例项目，公共组件的演示</li></ul></li> <li>webpackPlugins 自定义webpack插件</li></ul> <h2 id="打包说明"><a href="#打包说明" class="header-anchor">#</a> 打包说明</h2> <ul><li>每次打包前修改stars/子项目/star.config.js中对应的version版本号；</li> <li>打包预发时，执行 npm run pre 会在项目根目录dist-pre目录下根据版本号生成对应的静态资源；</li> <li>打包线上时，执行 npm run build 会在项目根目录dist目录下根据版本号生成对应的静态资源；</li></ul> <h2 id="开发说明"><a href="#开发说明" class="header-anchor">#</a> 开发说明</h2> <ul><li>开发时，在vue文件中，使用this.$log方法打印日志，这样生产环境不会打印日志</li> <li>优先使用./stars/common/目录中的公共组件和js功能，也可自己在该目录中封装公共模块；</li></ul> <h2 id="git分支说明"><a href="#git分支说明" class="header-anchor">#</a> git分支说明</h2> <ul><li>各业务线开发时从master分支新建一个自己的分支，最好将自己的分支push到远程分支，每次上完线需要将该分支和master分支进行合并；</li> <li>默认会有master和common分支，这2个分支提交代码时会进行代码评审，通过后方可进行合并；</li> <li>common分支：当自己贡献公共代码时在common分支上面进行修改，然后合并到master分支；</li> <li>master分支：将各个稳定代码的分支合并到master分支；</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># Project setup</span>
+<span class="token function">npm</span> <span class="token function">install</span>
+
+<span class="token comment"># create star</span>
+node createStar.js 子项目名称
+
+<span class="token comment"># create code block</span>
+node createStar.js 子项目名称 --block
+
+<span class="token comment"># dev</span>
+<span class="token function">npm</span> start
+
+<span class="token comment"># 当代码中提示eslint报错时，可执行该命令进行修复</span>
+<span class="token function">npm</span> run fix
+
+<span class="token comment"># Compiles and hot-reloads for development</span>
+<span class="token function">npm</span> run serve
+
+<span class="token comment"># 预发打包</span>
+<span class="token function">npm</span> run pre
+
+<span class="token comment"># 上线打包</span>
+<span class="token function">npm</span> run build
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.866bc7da.js" defer></script><script src="/assets/js/2.c8c446bb.js" defer></script><script src="/assets/js/5.187fd521.js" defer></script>
+  </body>
+</html>
