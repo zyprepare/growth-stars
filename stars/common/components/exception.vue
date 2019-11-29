@@ -1,7 +1,6 @@
 <template>
   <div class="exception-page" v-if="exceptionStatus">
     <div class="exception-content">
-      <img src="../assets/exception.png" class="exception-img" />
       <div class="exception-text" @click="refresh">
         <span>刷新页面 </span><i class="icon-refresh"></i>
       </div>
@@ -44,10 +43,6 @@ export default {
   padding-top: rem(230);
   background: #dedede;
   z-index: 99999;
-  .exception-img {
-    width: rem(329);
-    height: rem(286);
-  }
   .icon-refresh {
     display: inline-block;
     width: rem(22);

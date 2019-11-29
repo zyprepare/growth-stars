@@ -1,16 +1,16 @@
 {
   "name": "growth_stars",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "private": true,
   "homepage": "https://zyprepare.github.io/growth-stars/",
   "scripts": {
-    "start": "npm run serve & npm run format",
+    "start": "concurrently \"npm run serve\" \"npm run format\"",
     "serve": "vue-cli-service serve",
     "pre": "vue-cli-service build --pre",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "fix": "eslint --fix --ext .js --ext .vue stars/*/src/",
-    "format": "onchange 'stars/*/src/**/*.js' 'stars/*/src/**/*.vue' 'stars/*/src/**/*.scss' -- prettier --write {{changed}}",
+    "fix": "eslint --fix --ext .js,.vue stars/*/src/ stars/common/",
+    "format": "onchange \"stars/*/src/**/*.{js,vue,scss}\" \"stars/common/**/*.{js,vue,scss}\" -- prettier --write {{changed}}",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
     "deploy": "gh-pages -d docs/.vuepress/dist"
@@ -22,9 +22,12 @@
     }
   },
   "lint-staged": {
-    "stars/*/src/**/*.{js,vue}": [
-      "eslint --ext stars/*/src/**/*.{js,vue}",
-      "prettier --write",
+    "stars/*/src/**/*.{js,vue,scss}": [
+      "npm run lint",
+      "git add"
+    ],
+    "stars/common/**/*.{js,vue,scss}": [
+      "npm run lint",
       "git add"
     ]
   },
@@ -45,6 +48,7 @@
     "@vue/eslint-config-prettier": "^5.0.0",
     "archiver": "^3.1.1",
     "babel-eslint": "^10.0.1",
+    "concurrently": "^5.0.0",
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-vue": "^5.0.0",

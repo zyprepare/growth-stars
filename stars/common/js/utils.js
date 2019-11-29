@@ -68,29 +68,6 @@ export function accMul(arg1, arg2) {
 }
 
 /**
- * 显示公共头尾
- */
-export function showHeader() {
-  loadJs('//wq.360buyimg.com/js/common/dest/m_common_merge.min.js')
-    .then(() => {
-      let MCHB = window.MCommonHeaderBottom; // eslint-disable-line
-      if (MCHB) {
-        window.mchb = new MCHB();
-        window.mchb.header({
-          hrederId: 'm_common_header',
-          title: document.title || '换豆集市',
-          isShowShortCut: false,
-          selectedShortCut: '3'
-        });
-        // document.body.classList.add('has-header');
-      }
-    })
-    .catch(err => {
-      console.log('load header js failed.', err);
-    });
-}
-
-/**
  * 节流函数
  * @param {Function} fn
  * @param {Number} delay

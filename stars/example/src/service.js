@@ -36,7 +36,7 @@ export default {
   getData(params) {
     return new Promise((resolve, reject) => {
       axios.jsonpHelper({
-        // mockUrl: '/test',
+        mockUrl: '/test',
         params: {
           url: '/',
           data: {
